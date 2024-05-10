@@ -6,10 +6,17 @@ buildscript {
         google()
         mavenCentral()
         jcenter()
+         maven {
+            url = "https://artifactory.foodtrux.co/artifactory/foodtrux-lib/"
+            credentials {
+                username "iurii"
+                password "Password1"
+            }
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:8.0.1'
         // noinspection DifferentKotlinGradleVersion
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -55,7 +62,13 @@ repositories {
     mavenCentral()
     jcenter()
     google()
-
+ maven {
+            url = "https://artifactory.foodtrux.co/artifactory/foodtrux-lib/"
+            credentials {
+                username "iurii"
+                password "Password1"
+            }
+        }
     def found = false
     def defaultDir = null
     def androidSourcesName = 'React Native sources'
@@ -128,7 +141,8 @@ dependencies {
     // noinspection GradleDynamicVersion
     api 'com.facebook.react:react-native:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation files('src/lib/stario10.aar')
+    implementation 'com:stario10:1.2.0@aar'
+
     def coroutines_version = '1.3.7' //Kotlin coroutines用ライブラリ(async, await)のバージョン
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version" //Kotlin coroutines用ライブラリ(async, await)
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
