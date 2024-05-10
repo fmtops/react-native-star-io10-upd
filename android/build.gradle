@@ -133,12 +133,12 @@ maven {
         })
     }
 
-    if (!found) {
-        throw new GradleException(
-                "${project.name}: unable to locate React Native android sources. " +
-                        "Ensure you have you installed React Native as a dependency in your project and try again."
-        )
-    }
+//    if (!found) {
+//        throw new GradleException(
+//                "${project.name}: unable to locate React Native android sources. " +
+//                        "Ensure you have you installed React Native as a dependency in your project and try again."
+//        )
+//    }
 }
 
 def kotlin_version = "1.8.10"
@@ -147,7 +147,7 @@ dependencies {
     // noinspection GradleDynamicVersion
     api 'com.facebook.react:react-native:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-   implementation 'com:stario10:1.2.0@aar'
+    implementation 'com.star:io10:1.6.0@aar'
     // implementation 'com.starmicronics:stario10:1.0.1'
     def coroutines_version = '1.3.7' //Kotlin coroutines用ライブラリ(async, await)のバージョン
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version" //Kotlin coroutines用ライブラリ(async, await)
