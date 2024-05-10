@@ -5,7 +5,8 @@ import com.starmicronics.stario10.StarPrinterStatus
 import com.starmicronics.stario10.*
 
 
-class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext) :
+    ReactContextBaseJavaModule(context) {
     override fun getName(): String {
         return "StarIO10ErrorWrapper"
     }
@@ -22,6 +23,8 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
             is StarIO10NotFoundException -> "NotFound"
             is StarIO10UnknownException -> "Unknown"
             is StarIO10UnprintableException -> "Unprintable"
+            is StarIO10UnsupportedModelException -> "UnsupportedModel"
+            is StarIO10AuthenticationException -> "Authentication"
             else -> {
                 promise.reject(ReactNoCrashSoftException("Exception is not defined"))
                 return
@@ -37,9 +40,8 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
 
         if (exception is StarIO10Exception) {
             promise.resolve(exception.message)
-        }
-        else {
-          promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
 
@@ -49,8 +51,7 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
 
         if (exception is StarIO10Exception) {
             promise.resolve(exception.errorCode.value)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -65,7 +66,7 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
             status = exception.status
         }
 
-        if(status == null) {
+        if (status == null) {
             promise.reject(ReactNoCrashSoftException("status is null."))
             return
         }
